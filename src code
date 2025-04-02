@@ -1,0 +1,522 @@
+@echo off
+title BlueStart - By Ehqie V1.5
+chcp 65001 >nul
+color 1
+:start
+cd files
+
+:menu
+call :banner
+for /f %%A in ('"prompt $H &echo on &for %%B in (1) do rem"') do set BS=%%A
+echo.
+echo.
+echo    [38;5;17m╔═(1) autoclicker                          ╔═(6)nettoyage                         ╔═(11)accès rapide
+echo    [38;5;18m║                                          ║                                      ║ 
+echo    [38;5;19m║══(2) crosshair                           ║══(7)lancer un jeu                    ║══(12)control/réparation réseaux
+echo    [38;5;20m║                                          ║                                      ║
+echo    [38;5;21m║═══(3) Ouvrir un site                     ║═══(8)utilitaire réseaux              ║═══(13)backup
+echo    [38;5;27m║                                          ║                                      ║
+echo    [38;5;33m║════(4) Ouvrir un logiciel                ║════(9)custom tool                    ║════(14)sites osint
+echo    [38;5;39m║                                          ║                                      ║
+echo    [38;5;45m╚═════(5) Outil system                     ╚═════(10)Mode Développeur             ╚═════(15)credits
+echo    [38;5;51m║
+set /p input=.%BS%    ╚════^>
+if /I %input% EQU 1 start autoclicker.exe
+if /I %input% EQU 2 start crosshair.url
+if /I %input% EQU 3 goto open_sites
+if /I %input% EQU 4 goto apps
+if /I %input% EQU 5 goto system_tools
+if /I %input% EQU 6 goto cleanup
+if /I %input% EQU 7 goto games
+if /I %input% EQU 8 goto network_tools
+if /I %input% EQU 9 goto customize
+if /I %input% EQU 10 goto devtools
+if /I %input% EQU 11 goto folders
+if /I %input% EQU 12 goto network_fix
+if /I %input% EQU 13 goto backup
+if /I %input% EQU 14 goto osint_menu
+if /I %input% EQU 15 goto credits
+cls
+:open_sites
+color 6
+cls
+echo.
+echo    Quel site veux-tu ouvrir ?
+echo.
+echo    [38;5;18m╔═[1] YouTube
+echo    [38;5;19m║══[2] Twitch
+echo    [38;5;20m║═══[3] TikTok
+echo    [38;5;21m║════[4] Amazon
+echo    [38;5;27m║═════[5] Cdiscount
+echo    [38;5;33m║══════[6] Discord
+echo    [38;5;39m║═══════[7] Netflix
+echo    [38;5;45m║════════[8] Reddit
+echo   ╔═════════╝    
+echo   ║═[9] Spotify
+echo   ║══[10] Gmail
+echo   ║═══[11] FaceBook
+echo   ║════[12] Instagram
+echo   ╚═════[13] Twitter/X
+echo.
+echo    [38;5;51m╚════^>[0] Retour
+set /p site_choice=Choix ^> 
+
+if "%site_choice%"=="1" start https://www.youtube.com
+if "%site_choice%"=="2" start https://www.twitch.tv
+if "%site_choice%"=="3" start https://www.tiktok.com
+if "%site_choice%"=="4" start https://www.amazon.fr
+if "%site_choice%"=="5" start https://www.cdiscount.com
+if "%site_choice%"=="6" start https://discord.com
+if "%site_choice%"=="7" start https://www.netflix.com
+if "%site_choice%"=="8" start https://www.reddit.com
+if "%site_choice%"=="9" start https://open.spotify.com
+if "%site_choice%"=="10" start https://mail.google.com
+if "%site_choice%"=="11" start https://www.facebook.com
+if "%site_choice%"=="12" start https://www.instagram.com
+if "%site_choice%"=="13" start https://twitter.com
+if "%site_choice%"=="0" goto menu
+
+pause
+goto open_sites
+
+
+goto start
+
+:apps
+color 6
+cls
+echo.
+echo    Quel logiciel veux-tu lancer ?
+echo.
+echo    [38;5;18m╔═[1] Steam
+echo    [38;5;19m║══[2] Discord
+echo    [38;5;20m║═══[3] Octosniff
+echo    [38;5;21m║════[4] Epic games
+echo.
+echo    [38;5;45m╚════^>[0] Retour
+set /p app_choice=Choix ^>
+
+if "%app_choice%"=="1" start "" "C:\Program Files (x86)\Steam\Steam.exe"
+if "%app_choice%"=="2" start "" "%LOCALAPPDATA%\Discord\Update.exe" --processStart Discord.exe
+if "%app_choice%"=="3" start "" "C:\Program Files\OctoSniff\OctoSniff.exe"
+if "%app_choice%"=="4" start "" "C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe"
+if "%app_choice%"=="0" goto menu
+
+pause
+goto apps
+
+:system_tools
+color 6
+cls
+echo.
+echo    🛠️ Outils Système :
+echo.
+echo    [38;5;19m╔═[1] Gestionnaire de tâches
+echo    [38;5;20m║══[2] Invite de commandes
+echo    [38;5;21m║═══[3] Explorateur de fichiers
+echo    [38;5;27m║════[4] Panneau de configuration
+echo    [38;5;33m╚═════[5] IPConfig (voir ton IP)
+echo.
+echo    [38;5;45m[0] Retour
+set /p tool_choice=Choix ^>
+
+if "%tool_choice%"=="1" start taskmgr
+if "%tool_choice%"=="2" start cmd
+if "%tool_choice%"=="3" start explorer
+if "%tool_choice%"=="4" start control
+if "%tool_choice%"=="5" ipconfig & pause
+if "%tool_choice%"=="0" goto menu
+
+pause
+goto system_tools
+
+:cleanup
+cls
+color 6
+echo.
+echo    ┌──────────────────────────────────────────────┐
+echo    │       Nettoyage rapide du système           │
+echo    └──────────────────────────────────────────────┘
+echo.
+echo    Nettoyage des fichiers temporaires...
+del /q /f /s %TEMP%\*
+del /q /f /s C:\Windows\Temp\*
+rd /s /q %TEMP%
+rd /s /q C:\Windows\Temp
+echo.
+echo    Nettoyage de la corbeille...
+echo Y | del /f /q %systemdrive%\$Recycle.Bin\*
+echo.
+echo    Fichiers temporaires nettoyés avec succès !
+pause
+goto menu
+
+
+:games
+cls
+color 6
+echo.
+echo    🎮 Mode Jeux - Sélectionne ton jeu :
+echo.
+echo    [38;5;19m╔═[1] Minecraft
+echo    [38;5;20m║══[2] Steam
+echo    [38;5;21m║═══[3] Valorant
+echo    [38;5;27m╚════[4] Epic Games
+echo.
+echo    [38;5;51m[0] Retour
+set /p game_choice=Choix ^>
+
+if "%game_choice%"=="1" start "" "%USERPROFILE%\OneDrive\Bureau\Minecraft.lnk"
+if "%game_choice%"=="2" start "" "C:\Program Files (x86)\Steam\Steam.exe"
+if "%game_choice%"=="3" start "" "C:\Riot Games\Riot Client\RiotClientServices.exe"
+if "%game_choice%"=="4" start "" "C:\Program Files (x86)\Epic Games\Launcher\Portal\Binaries\Win32\EpicGamesLauncher.exe"
+if "%game_choice%"=="0" goto menu
+
+pause
+goto games
+
+
+pause
+goto games
+
+:network_tools
+cls
+color 6
+echo.
+echo    🌐 Utilitaires Réseau - BlueStart :
+echo.
+echo    [38;5;19m╔═[1] Voir mon IP locale
+echo    [38;5;20m║══[2] Voir mon IP publique (dans le navigateur)
+echo    [38;5;21m║═══[3] Ping Google (vérifier connexion)
+echo    [38;5;51m╚════[0] Retour
+echo.
+set /p net_choice=Choix ^>
+
+if "%net_choice%"=="1" ipconfig & pause
+if "%net_choice%"=="2" start https://whatismyipaddress.com
+if "%net_choice%"=="3" ping google.com & pause
+if "%net_choice%"=="0" goto menu
+
+goto network_tools
+
+:customize
+cls
+color 6
+echo.
+echo    🎨 Personnalisation de BlueStart :
+echo.
+echo    [38;5;18m╔═[1] Thème sombre (vert sur noir)
+echo    [38;5;19m║══[2] Thème clair (bleu sur blanc)
+echo    [38;5;20m╚[═══3] Thème original (bleu foncé)
+echo.
+echo    [38;5;51m[0] Retour
+set /p custom_choice=Choix ^>
+
+if "%custom_choice%"=="1" color 0A
+if "%custom_choice%"=="2" color 1F
+if "%custom_choice%"=="3" color 1
+if "%custom_choice%"=="0" goto menu
+
+goto customize
+
+:devtools
+cls
+color 6
+echo.
+echo    👨‍💻 Mode Développeur / Terminal :
+echo.
+echo    [38;5;18m╔═[1] Invite de commandes
+echo    [38;5;19m║══[2] PowerShell
+echo    [38;5;20m║═══[3] Notepad
+echo    [38;5;21m║════[4] Éditeur de registre (regedit)
+echo    [38;5;27m║═════[5] Ouvrir le dossier BlueStart
+echo    [38;5;33m║══════[6] Créer un fichier texte
+echo    [38;5;39m╚═══════[7] Effet Matrix
+echo.
+echo    [38;5;51m[0] Retour
+set /p dev_choice=Choix ^>
+
+if "%dev_choice%"=="1" start cmd
+if "%dev_choice%"=="2" start powershell
+if "%dev_choice%"=="3" start notepad
+if "%dev_choice%"=="4" start regedit
+if "%dev_choice%"=="5" start "" "%~dp0"
+if "%dev_choice%"=="6" echo. > NouveauFichier.txt & start notepad NouveauFichier.txt
+if "%dev_choice%"=="7" goto matrix
+if "%dev_choice%"=="0" goto menu
+
+pause
+goto devtools
+
+:matrix
+cls
+color 0A
+mode 100,40
+:a
+echo %random% %random% %random% %random% %random%
+goto a
+
+:folders
+cls
+color 6
+echo.
+echo    📂 Accès Rapide aux Dossiers :
+echo.
+echo    [38;5;18m╔═[1] Bureau
+echo    [38;5;19m║══[2] Documents
+echo    [38;5;20m║═══[3] Téléchargements
+echo    [38;5;21m║════[4] AppData
+echo    [38;5;27m╚═════[5] Temp
+echo.
+echo    [38;5;51m[0] Retour
+set /p folder_choice=Choix ^>
+
+if "%folder_choice%"=="1" start "" "%USERPROFILE%\Desktop"
+if "%folder_choice%"=="2" start "" "%USERPROFILE%\Documents"
+if "%folder_choice%"=="3" start "" "%USERPROFILE%\Downloads"
+if "%folder_choice%"=="4" start "" "%APPDATA%"
+if "%folder_choice%"=="5" start "" "%TEMP%"
+if "%folder_choice%"=="0" goto menu
+
+goto folders
+
+:network_fix
+cls
+color 4
+echo.
+echo    🔧 Réparation Réseau :
+echo.
+echo    [38;5;18m╔═[1] Vider le cache DNS
+echo    [38;5;19m║══[2] Renouveler l'adresse IP
+echo    [38;5;20m║═══[3] Réinitialiser la carte réseau
+echo    [38;5;21m╚════[4] Tout faire (recommandé)
+echo.
+echo    [38;5;51m[0] Retour
+set /p netfix_choice=Choix ^>
+
+if "%netfix_choice%"=="1" ipconfig /flushdns & echo. & echo ✅ Cache DNS vidé. & pause
+if "%netfix_choice%"=="2" ipconfig /release & ipconfig /renew & echo. & echo ✅ Adresse IP renouvelée. & pause
+if "%netfix_choice%"=="3" netsh int ip reset & netsh winsock reset & echo. & echo ✅ Carte réseau réinitialisée. Redémarrage recommandé. & pause
+if "%netfix_choice%"=="4" (
+    ipconfig /flushdns
+    ipconfig /release
+    ipconfig /renew
+    netsh int ip reset
+    netsh winsock reset
+    echo.
+    echo ✅ Toutes les opérations ont été effectuées !
+    echo 🔁 Redémarre ton PC pour finaliser.
+    pause
+)
+if "%netfix_choice%"=="0" goto menu
+
+goto network_fix
+
+:backup
+cls
+color 2
+echo.
+echo    💾 Sauvegarde Express
+echo.
+set "backup_dir=%USERPROFILE%\Desktop\SAUVEGARDE_Bluestart"
+echo    ➤ Création du dossier de sauvegarde : %backup_dir%
+mkdir "%backup_dir%\Bureau"
+mkdir "%backup_dir%\Documents"
+
+echo.
+echo    ➤ Sauvegarde du Bureau...
+xcopy "%USERPROFILE%\Desktop\*" "%backup_dir%\Bureau\" /s /e /y >nul
+
+echo    ➤ Sauvegarde des Documents...
+xcopy "%USERPROFILE%\Documents\*" "%backup_dir%\Documents\" /s /e /y >nul
+
+echo.
+echo    ✅ Sauvegarde terminée !
+pause
+goto menu
+
+:process_tools
+cls
+color 6
+echo.
+echo    ⚙️ Gestionnaire de processus :
+echo.
+echo    [38;5;18m╔═[1] Voir les tâches en cours
+echo    [38;5;19m║══[2] Fermer un programme manuellement
+echo    [38;5;20m║═══[3] Fermer Discord
+echo    [38;5;21m║════[4] Fermer Steam
+echo    [38;5;27m╚═════[5] Fermer Google Chrome
+echo.
+echo    [38;5;51m[0] Retour
+set /p proc_choice=Choix ^>
+
+if "%proc_choice%"=="1" (
+    tasklist
+    pause
+    goto process_tools
+)
+
+if "%proc_choice%"=="2" (
+    set /p to_kill=Nom du programme à fermer (ex: notepad.exe) ^>
+    if not "%to_kill%"=="" (
+        taskkill /f /im "%to_kill%" >nul 2>&1
+        echo ✅ Tentative de fermeture de %to_kill%
+    ) else (
+        echo ⚠️ Aucun nom saisi.
+    )
+    pause
+    goto process_tools
+)
+
+if "%proc_choice%"=="3" (
+    taskkill /f /im discord.exe >nul 2>&1
+    echo ✅ Discord fermé.
+    pause
+    goto process_tools
+)
+
+if "%proc_choice%"=="4" (
+    taskkill /f /im steam.exe >nul 2>&1
+    echo ✅ Steam fermé.
+    pause
+    goto process_tools
+)
+
+if "%proc_choice%"=="5" (
+    taskkill /f /im chrome.exe >nul 2>&1
+    echo ✅ Chrome fermé.
+    pause
+    goto process_tools
+)
+
+if "%proc_choice%"=="0" goto menu
+
+goto process_tools
+
+
+:credits
+cls
+color 2
+echo.
+echo            💙 Crédits - BlueStart Tool
+echo.
+timeout /t 3 >nul
+echo    Développé avec passion par...
+timeout /t 3 >nul
+echo    Le maître des scripts .bat...
+timeout /t 3 >nul
+echo    Un créateur discret mais efficace...
+timeout /t 3 >nul
+echo    💻 Créateur officiel : ehqie
+timeout /t 3 >nul
+echo    ────────────────────────────────────────────────
+timeout /t 3 >nul
+echo    Interface inspirée par les outils pro
+timeout /t 3 >nul
+echo    Compatible Windows 10 / 11
+timeout /t 3 >nul
+echo    Scripts faits à la main, pas générés par IA 😉
+timeout /t 3 >nul
+echo    Conçu pour lancer, automatiser, et styliser
+timeout /t 3 >nul
+echo    Inclut des modules : apps, jeux, réseaux...
+timeout /t 3 >nul
+echo    Nettoyage système intégré
+timeout /t 3 >nul
+echo    Personnalisation couleurs et terminal
+timeout /t 3 >nul
+echo    Mode développeur, matrix, gestionnaire
+timeout /t 3 >nul
+echo    Toolkit multifonction ultra complet
+timeout /t 3 >nul
+echo    Sécurité, stabilité, style 😎
+timeout /t 3 >nul
+echo    Tu utilises BlueStart ? T’es déjà dans le turfu
+timeout /t 3 >nul
+echo.
+echo    🔐 Code protégé : ne pas copier / modifier
+timeout /t 3 >nul
+echo    ⚠️ Toute modification est à vos risques
+timeout /t 3 >nul
+echo    En cas de bug ou besoin d’aide : contacter ehqie
+timeout /t 3 >nul
+echo    Discord : asciiq
+timeout /t 3 >nul
+echo    ────────────────────────────────────────────────
+timeout /t 3 >nul
+echo    Merci d’avoir utilisé BlueStart.
+timeout /t 3 >nul
+echo    Fermeture du menu des crédits...
+timeout /t 3 >nul
+goto menu
+
+:osint_menu
+cls
+color 6
+echo.
+echo   ===============================================
+echo        ███╗   ███╗███████╗███╗   ██╗██╗   ██╗
+echo        ████╗ ████║██╔════╝████╗  ██║██║   ██║
+echo        ██╔████╔██║█████╗  ██╔██╗ ██║██║   ██║
+echo        ██║╚██╔╝██║██╔══╝  ██║╚██╗██║██║   ██║
+echo        ██║ ╚═╝ ██║███████╗██║ ╚████║╚██████╔╝
+echo        ╚═╝     ╚═╝╚══════╝╚═╝  ╚═══╝ ╚═════╝ 
+echo        MENU OSINT - RECHERCHE -
+echo    ===============================================
+echo.
+echo    [1] WhatIsMyIP (adresse IP publique)
+echo    [2] IPinfo.io (détails IP avancés)
+echo    [3] HaveIBeenPwned (emails piratés)
+echo    [4] PhoneInfoga Web (analyse de numéros)
+echo    [5] EmailRep (infos sur emails)
+echo    [6] Namecheckr (dispo d’un pseudo)
+echo    [7] Social Searcher (recherche multi-réseaux)
+echo    [8] Hunter.io (emails liés à un domaine)
+echo    [9] ExifTool Online (métadonnées images)
+echo    [10] Shodan (recherche d'appareils connectés)
+echo.
+echo    [0] Retour
+set /p osint_choice=Choix ^>
+
+if "%osint_choice%"=="1" start https://whatismyipaddress.com
+if "%osint_choice%"=="2" start https://ipinfo.io
+if "%osint_choice%"=="3" start https://haveibeenpwned.com
+if "%osint_choice%"=="4" start https://demo.phoneinfoga.crvx.fr/
+if "%osint_choice%"=="5" start https://emailrep.io
+if "%osint_choice%"=="6" start https://namecheckr.com
+if "%osint_choice%"=="7" start https://www.social-searcher.com
+if "%osint_choice%"=="8" start https://hunter.io
+if "%osint_choice%"=="9" start https://www.exif.tools
+if "%osint_choice%"=="10" start https://www.shodan.io
+if "%osint_choice%"=="0" goto menu
+
+goto osint_menu
+
+
+:not_ready
+cls
+color 4
+echo.
+echo   ⚠️  L’option sélectionnée n’est pas encore disponible.
+echo.
+echo   🔧 Elle sera ajoutée dans une future mise à jour de BlueStart.
+echo.
+pause
+goto menu
+
+
+:banner
+echo.
+echo.
+echo                     [38;5;17m▄▄▄▄    ██▓     █    ██ ▓█████      ██████ ▄▄▄█████▓ ▄▄▄       ██▀███  ▄▄▄█████▓
+echo                    [38;5;18m▓█████▄ ▓██▒     ██  ▓██▒▓█   ▀    ▒██    ▒ ▓  ██▒ ▓▒▒████▄    ▓██ ▒ ██▒▓  ██▒ ▓▒
+echo                    [38;5;19m▒██▒▒██▒ ▄██▒██░    ▓██  ▒██░▒███      ░ ▓██▄   ▒ ▓██░ ▒░▒██  ▀█▄  ▓██ ░▄█ ▒▒ ▓██░ ▒░
+echo                    [38;5;20m▒██░█▀  ▒██░    ▓▓█  ░██░▒▓█  ▄      ▒   ██▒░ ▓██▓ ░ ░██▄▄▄▄██ ▒██▀▀█▄  ░ ▓██▓ ░ 
+echo                    [38;5;21m░▓█  ▀█▓░██████▒▒▒█████▓ ░▒████▒   ▒██████▒▒  ▒██▒ ░  ▓█   ▓██▒░██▓ ▒██▒  ▒██▒ ░ 
+echo                    [38;5;27m░▒▓███▀▒░ ▒░▓  ░░▒▓▒ ▒ ▒ ░░ ▒░ ░   ▒ ▒▓▒ ▒ ░  ▒ ░░    ▒▒   ▓▒█░░ ▒▓ ░▒▓░  ▒ ░░   
+echo                     [38;5;33m▒░▒   ░ ░ ░ ▒  ░░░▒░ ░ ░  ░ ░  ░   ░ ░▒  ░ ░    ░      ▒   ▒▒ ░  ░▒ ░ ▒░    ░    
+echo                     [38;5;39m░    ░   ░ ░    ░░░ ░ ░    ░      ░  ░  ░    ░        ░   ▒     ░░   ░   ░      
+echo                     [38;5;45m░          ░  ░   ░        ░  ░         ░                 ░  ░   ░              
+echo                          [38;5;51m░                                                                          
+echo.
+echo.
